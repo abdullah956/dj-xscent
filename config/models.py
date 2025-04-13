@@ -7,3 +7,4 @@ class BasedModel(models.Model):
 
     class Meta:
         abstract = True
+        
