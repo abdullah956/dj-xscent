@@ -13,6 +13,8 @@ class Product(BasedModel):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to='product_images/')
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
-
+    is_best_selling = models.BooleanField(default=False)
+    is_new_arrival = models.BooleanField(default=False)
+    
     def __str__(self):
         return self.name

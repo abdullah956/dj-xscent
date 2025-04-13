@@ -2,10 +2,18 @@ from django.shortcuts import render,redirect
 from .models import ContactMessage
 from .models import Blog
 from django.contrib import messages
-
+from products.models import Product
 
 def home_view(request):
-    return render(request, 'home.html')
+    new_arrivals = Product.objects.filter(is_new_arrival=True)
+    best_selling = Product.objects.filter(is_best_selling=True)
+    blogs = Blog.objects.order_by('-created_at')[:3]
+
+    return render(request, 'home.html', {
+        'new_arrivals': new_arrivals,
+        'best_selling': best_selling,
+        'blogs': blogs,
+    })
 
 def blogs_view(request):
     blogs = Blog.objects.order_by('created_at')
