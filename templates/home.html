@@ -92,42 +92,20 @@
     <div class="container">
       <div class="open-up" data-aos="zoom-out">
         <div class="row">
-          <div class="col-md-4">
-            <div class="cat-item image-zoom-effect">
-              <div class="image-holder">
-                <a href="index.html"><img src="{% static 'images/p.png' %}" alt="categories" class="product-image img-fluid" /></a>
-              </div>
-              <div class="category-content">
-                <div class="product-button">
-                  <a href="index.html" class="btn btn-common text-uppercase">Shop for men</a>
+          {% for category in categories|slice:':3' %}
+            <div class="col-md-4">
+              <div class="cat-item image-zoom-effect">
+                <div class="image-holder">
+                  <a href="{% url 'all_products' %}?category={{ category.id }}"><img src="{{ category.image.url }}" alt="{{ category.name }}" class="product-image img-fluid" /></a>
+                </div>
+                <div class="category-content">
+                  <div class="product-button">
+                    <a href="{% url 'all_products' %}?category={{ category.id }}" class="btn btn-common text-uppercase">Shop for {{ category.name }}</a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-4">
-            <div class="cat-item image-zoom-effect">
-              <div class="image-holder">
-                <a href="index.html"><img src="{% static 'images/p.png' %}" alt="categories" class="product-image img-fluid" /></a>
-              </div>
-              <div class="category-content">
-                <div class="product-button">
-                  <a href="index.html" class="btn btn-common text-uppercase">Shop for women</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="cat-item image-zoom-effect">
-              <div class="image-holder">
-                <a href="index.html"><img src="{% static 'images/p.png' %}" alt="categories" class="product-image img-fluid" /></a>
-              </div>
-              <div class="category-content">
-                <div class="product-button">
-                  <a href="index.html" class="btn btn-common text-uppercase">All Products</a>
-                </div>
-              </div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -184,7 +162,7 @@
             <div class="collection-content p-5 m-0 m-md-5">
               <h3 class="element-title text-uppercase">Classic winter collection</h3>
               <p>Dignissim lacus, turpis ut suspendisse vel tellus. Turpis purus, gravida orci, fringilla a. Ac sed eu fringilla odio mi. Consequat pharetra at magna imperdiet cursus ac faucibus sit libero. Ultricies quam nunc, lorem sit lorem urna, pretium aliquam ut. In vel, quis donec dolor id in. Pulvinar commodo mollis diam sed facilisis at cursus imperdiet cursus ac faucibus sit faucibus sit libero.</p>
-              <a href="#" class="btn btn-dark text-uppercase mt-3">Shop Collection</a>
+              <a href="{% url 'all_products'%}" class="btn btn-dark text-uppercase mt-3">Shop Collection</a>
             </div>
           </div>
         </div>
