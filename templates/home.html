@@ -17,48 +17,22 @@
       <div class="row">
         <div class="swiper main-swiper py-4" data-aos="fade-up" data-aos-delay="600">
           <div class="swiper-wrapper d-flex border-animation-left">
-            <div class="swiper-slide">
-              <div class="banner-item image-zoom-effect">
-                <div class="image-holder">
-                  <a href="index.html"><img src="{% static 'images/p.png' %}" alt="categories" class="product-image img-fluid" /></a>
-                </div>
-                <div class="banner-content py-4">
-                  <h5 class="element-title text-uppercase"><a href="index.html" class="item-anchor">Men Perfumes</a></h5>
-                  <p>Scelerisque duis aliquam qui lorem ipsum dolor amet, consectetur adipiscing elit.</p>
-                  <div class="btn-left">
-                    <a href="#" class="btn-link fs-6 text-uppercase item-anchor text-decoration-none">Discover Now</a>
+            {% for category in categories %}
+              <div class="swiper-slide">
+                <div class="banner-item image-zoom-effect">
+                  <div class="image-holder">
+                    <a href="{% url 'all_products' %}?category={{ category.id }}"><img src="{{ category.image.url }}" alt="{{ category.name }}" class="product-image img-fluid" /></a>
+                  </div>
+                  <div class="banner-content py-4">
+                    <h5 class="element-title text-uppercase"><a href="{% url 'all_products' %}?category={{ category.id }}" class="item-anchor">{{ category.name }}</a></h5>
+                    <p>{{ category.description|truncatewords:15 }}</p>
+                    <div class="btn-left">
+                      <a href="{% url 'all_products' %}?category={{ category.id }}" class="btn-link fs-6 text-uppercase item-anchor text-decoration-none">Discover Now</a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="banner-item image-zoom-effect">
-                <div class="image-holder">
-                  <a href="index.html"><img src="{% static 'images/p.png' %}" alt="categories" class="product-image img-fluid" /></a>
-                </div>
-                <div class="banner-content py-4">
-                  <h5 class="element-title text-uppercase"><a href="index.html" class="item-anchor">Women Perfume</a></h5>
-                  <p>Scelerisque duis aliquam qui lorem ipsum dolor amet, consectetur adipiscing elit.</p>
-                  <div class="btn-left">
-                    <a href="#" class="btn-link fs-6 text-uppercase item-anchor text-decoration-none">Discover Now</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="banner-item image-zoom-effect">
-                <div class="image-holder">
-                  <a href="index.html"><img src="{% static 'images/p.png' %}" alt="categories" class="product-image img-fluid" /></a>
-                </div>
-                <div class="banner-content py-4">
-                  <h5 class="element-title text-uppercase"><a href="index.html" class="item-anchor">Unisex Perfumes</a></h5>
-                  <p>Scelerisque duis aliquam qui lorem ipsum dolor amet, consectetur adipiscing elit.</p>
-                  <div class="btn-left">
-                    <a href="#" class="btn-link fs-6 text-uppercase item-anchor text-decoration-none">Discover Now</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
           </div>
           <div class="swiper-pagination"></div>
         </div>
