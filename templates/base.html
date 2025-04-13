@@ -434,7 +434,7 @@
                   <li class="nav-item dropdown">
                     <a
                       class="nav-link active"
-                      href="#"
+                      href="{% url 'home'%}"
                       aria-haspopup="true"
                       aria-expanded="false"
                       >Home</a
@@ -443,7 +443,7 @@
                   <li class="nav-item dropdown">
                     <a
                       class="nav-link dropdown-toggle"
-                      href="#"
+                      href=""
                       id="dropdownShop"
                       data-bs-toggle="dropdown"
                       aria-haspopup="true"
@@ -455,33 +455,33 @@
                       aria-labelledby="dropdownShop"
                     >
                       <li>
-                        <a href="index.html" class="dropdown-item item-anchor"
+                        <a href="{% url 'all_products'%}" class="dropdown-item item-anchor"
                           >Men
                         </a>
                       </li>
                       <li>
-                        <a href="index.html" class="dropdown-item item-anchor"
+                        <a href="{% url 'all_products'%}" class="dropdown-item item-anchor"
                           >Women
                         </a>
                       </li>
                       <li>
-                        <a href="index.html" class="dropdown-item item-anchor"
+                        <a href="{% url 'all_products'%}" class="dropdown-item item-anchor"
                           >Unisex
                         </a>
                       </li>
                       <li>
-                        <a href="index.html" class="dropdown-item item-anchor"
+                        <a href="{%url 'all_products'%}" class="dropdown-item item-anchor"
                           >All Products
                         </a>
                       </li>
                     </ul>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Blog</a>
+                    <a class="nav-link" href="{% url 'blog'%}">Blog</a>
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="{% url 'contact'%}">Contact</a>
                   </li>
                 </ul>
               </div>
@@ -616,7 +616,7 @@
               class="menu-list list-unstyled text-uppercase border-animation-left fs-6"
             >
               <li class="menu-item">
-                <a href="index.html" class="item-anchor">Home</a>
+                <a href="{% url 'home'%}" class="item-anchor">Home</a>
               </li>
               <li class="menu-item">
                 <a href="index.html" class="item-anchor">About</a>
