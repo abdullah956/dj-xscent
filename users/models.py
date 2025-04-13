@@ -17,3 +17,9 @@ class ContactMessage(BasedModel):
 
     def __str__(self):
         return f"Message from {self.name}"
+
+class NewsletterSubscriber(BasedModel):
+    email = models.EmailField(unique=True)
+    
+    def __str__(self):
+        return self.email

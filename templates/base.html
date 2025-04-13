@@ -233,8 +233,9 @@
             <div class="subscribe-header text-center pb-3">
               <h3 class="section-title text-uppercase">Sign Up for our newsletter</h3>
             </div>
-            <form id="form" class="d-flex flex-wrap gap-2">
-              <input type="text" name="email" placeholder="Your Email Addresss" class="form-control form-control-lg" />
+            <form method="POST" action="{% url 'newsletter_signup' %}" class="d-flex flex-wrap gap-2">
+              {% csrf_token %}
+              {{ newsletter_form.as_p }}
               <button class="btn btn-dark btn-lg text-uppercase w-100">Sign Up</button>
             </form>
           </div>
@@ -345,11 +346,11 @@
         <div class="container">
           <div class="row">
             <div class="col-md-6 d-flex flex-wrap">
-              <!--  <div class="shipping">
+              <!--        <div class="shipping">
               <span>We ship with:</span>
               <img src="images/arct-icon.png" alt="icon" />
               <img src="images/dhl-logo.png" alt="icon" />
-            </div>  -->
+            </div>        -->
               <div class="payment-option">
                 <!-- <span>Payment Option:</span> -->
                 <img src="{% static 'images/visa-card.png' %}" alt="card" />
