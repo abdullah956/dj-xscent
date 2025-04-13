@@ -361,7 +361,7 @@ a {
 .image-holder{
   height: 350px;
   width: 200px;
-  background-color: #A226F3;
+  /* background-color: #A226F3; */
 }
 
 .image-holder img{
@@ -371,17 +371,17 @@ a {
 }
 
 
-.image-holder{
+/* .image-holder{
   height: 550px;
   width: 400px;
-  background-color: #A226F3;
+
 }
 
 .image-holder img{
   height: 100%;
   width: 100%;
   object-fit: cover;
-}
+} */
 
 
 
