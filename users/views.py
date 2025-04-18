@@ -33,7 +33,7 @@ def contact_view(request):
         contact_message.save()
         messages.success(request, 'Your message has been sent successfully!')
         return redirect('contact')
-    return render(request, 'users/contact.html')
+    return render(request, 'home.html')
 
 def newsletter_signup(request):
     if request.method == 'POST':
