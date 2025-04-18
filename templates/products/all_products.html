@@ -1,169 +1,44 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Products{% endblock %}
+{% block title %}
+  Products
+{% endblock %}
 
 {% block content %}
-
-
-
-<section class="products-page py-5">
+  <section class="products-page py-5">
     <div class="container">
       <div class="row">
         <!-- Sidebar Filter -->
         <div class="col-md-3 mb-4">
           <h5 class="text-uppercase mb-3">Filter by Price</h5>
           <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">Below Rs. 1500</a>
-            <a href="#" class="list-group-item list-group-item-action">Rs. 1500 - Rs. 2500</a>
-            <a href="#" class="list-group-item list-group-item-action">Above Rs. 2500</a>
+            <a href="{% url 'all_products' %}?price=below1500" class="list-group-item list-group-item-action">Below Rs. 1500</a>
+            <a href="{% url 'all_products' %}?price=1500to2500" class="list-group-item list-group-item-action">Rs. 1500 - Rs. 2500</a>
+            <a href="{% url 'all_products' %}?price=above2500" class="list-group-item list-group-item-action">Above Rs. 2500</a>
           </div>
         </div>
-  
+
         <!-- Product Grid -->
         <div class="col-md-9">
           <div class="row g-4">
             <!-- Product Card -->
-            <div class="col-md-4">
-              <div class="product-item image-zoom-effect link-effect">
-                <div class="image-holder position-relative">
-                  <a href="#">
-                    <img
-                      src="{% static 'images/p.png' %}"
-                      alt="Product"
-                      class="product-image img-fluid"
-                    />
-                  </a>
-                  <div class="product-content">
-                    <h5 class="element-title text-uppercase fs-6 mt-3">
-                      <a href="#">Dark florish onepiece</a>
-                    </h5>
-                    <a href="#" class="text-decoration-none" data-after="Add to cart">
-                      <span>Rs. 950</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-  
-            <!-- Repeat Product Cards -->
-            <div class="col-md-4">
-              <div class="product-item image-zoom-effect link-effect">
-                <div class="image-holder position-relative">
-                  <a href="#">
-                    <img
-                      src="{% static 'images/p.png' %}"
-                      alt="Product"
-                      class="product-image img-fluid"
-                    />
-                  </a>
-                  <div class="product-content">
-                    <h5 class="element-title text-uppercase fs-6 mt-3">
-                      <a href="#">Baggy Shirt</a>
-                    </h5>
-                    <a href="#" class="text-decoration-none" data-after="Add to cart">
-                      <span>Rs. 1550</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-  
-            <div class="col-md-4">
-              <div class="product-item image-zoom-effect link-effect">
-                <div class="image-holder position-relative">
-                  <a href="#">
-                    <img
-                      src="{% static 'images/p.png' %}"
-                      alt="Product"
-                      class="product-image img-fluid"
-                    />
-                  </a>
-                  <div class="product-content">
-                    <h5 class="element-title text-uppercase fs-6 mt-3">
-                      <a href="#">Off-white Cotton Shirt</a>
-                    </h5>
-                    <a href="#" class="text-decoration-none" data-after="Add to cart">
-                      <span>Rs. 2600</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Add more cards as needed -->
-
-            <div class="col-md-4">
-                <div class="product-item image-zoom-effect link-effect">
-                  <div class="image-holder position-relative">
-                    <a href="#">
-                      <img
-                        src="{% static 'images/p.png' %}"
-                        alt="Product"
-                        class="product-image img-fluid"
-                      />
-                    </a>
-                    <div class="product-content">
-                      <h5 class="element-title text-uppercase fs-6 mt-3">
-                        <a href="#">Off-white Cotton Shirt</a>
-                      </h5>
-                      <a href="#" class="text-decoration-none" data-after="Add to cart">
-                        <span>Rs. 2600</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
+            {% for product in products %}
               <div class="col-md-4">
                 <div class="product-item image-zoom-effect link-effect">
                   <div class="image-holder position-relative">
-                    <a href="#">
-                      <img
-                        src="{% static 'images/p.png' %}"
-                        alt="Product"
-                        class="product-image img-fluid"
-                      />
-                    </a>
+                    <a href="#"><img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image img-fluid" /></a>
                     <div class="product-content">
-                      <h5 class="element-title text-uppercase fs-6 mt-3">
-                        <a href="#">Off-white Cotton Shirt</a>
-                      </h5>
-                      <a href="#" class="text-decoration-none" data-after="Add to cart">
-                        <span>Rs. 2600</span>
-                      </a>
+                      <h5 class="element-title text-uppercase fs-6 mt-3"><a href="#">{{ product.name }}</a></h5>
+                      <a href="#" class="text-decoration-none" data-after="Add to cart"><span>Rs. {{ product.price }}</span></a>
                     </div>
                   </div>
                 </div>
               </div>
-
-              <div class="col-md-4">
-                <div class="product-item image-zoom-effect link-effect">
-                  <div class="image-holder position-relative">
-                    <a href="#">
-                      <img
-                        src="{% static 'images/p.png' %}"
-                        alt="Product"
-                        class="product-image img-fluid"
-                      />
-                    </a>
-                    <div class="product-content">
-                      <h5 class="element-title text-uppercase fs-6 mt-3">
-                        <a href="#">Off-white Cotton Shirt</a>
-                      </h5>
-                      <a href="#" class="text-decoration-none" data-after="Add to cart">
-                        <span>Rs. 2600</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              
+            {% endfor %}
           </div>
         </div>
       </div>
     </div>
   </section>
-  
-
 {% endblock %}
