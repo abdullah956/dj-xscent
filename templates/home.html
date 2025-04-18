@@ -123,10 +123,10 @@
             <div class="swiper-slide">
               <div class="product-item image-zoom-effect link-effect">
                 <div class="image-holder position-relative">
-                  <a href="#"><img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image img-fluid" /></a>
+                  <a href="{% url 'product' product.id %}"><img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image img-fluid" /></a>
                   <div class="product-content">
                     <h5 class="text-uppercase fs-5 mt-3"><a href="#">{{ product.name }}</a></h5>
-                    <a href="#" class="text-decoration-none" data-after="Add to cart"><span>${{ product.price }}</span></a>
+                    <a href="{% url 'add_to_cart' product.id %}" class="text-decoration-none" data-after="Add to cart"><span>${{ product.price }}</span></a>
                   </div>
                 </div>
               </div>
@@ -182,10 +182,10 @@
             <div class="swiper-slide">
               <div class="product-item image-zoom-effect link-effect">
                 <div class="image-holder">
-                  <a href="#"><img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image img-fluid" /></a>
+                  <a href="{% url 'product' product.id %}"><img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image img-fluid" /></a>
                   <div class="product-content">
                     <h5 class="text-uppercase fs-5 mt-3"><a href="#">{{ product.name }}</a></h5>
-                    <a href="#" class="text-decoration-none" data-after="Add to cart"><span>${{ product.price }}</span></a>
+                    <a href="{% url 'add_to_cart' product.id %}" class="text-decoration-none" data-after="Add to cart"><span>${{ product.price }}</span></a>
                   </div>
                 </div>
               </div>
