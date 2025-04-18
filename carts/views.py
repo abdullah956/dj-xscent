@@ -15,14 +15,6 @@ def cart_view(request):
 
     return render(request, 'carts/cart.html', {'cart': cart})
 
-
-def checkout_view(request):
-    return render(request, 'carts/checkout.html')
-
-def thanks_view(request):
-    return render(request, 'carts/thanks.html')
-
-
 def add_to_cart(request, id):
     product = get_object_or_404(Product, id=id)
     cart = request.session.get('cart', {})
