@@ -20,5 +20,7 @@ class Orders(BasedModel):
     )
     cart_data = models.JSONField(default=dict)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    paid = models.BooleanField(default=False)
+
     def __str__(self):
         return f'{self.first_name} {self.last_name} - {self.payment_method}'
