@@ -27,7 +27,8 @@
               <div class="col-md-4">
                 <div class="product-item image-zoom-effect link-effect">
                   <div class="image-holder position-relative">
-                    <a href="#"><img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image img-fluid" /></a>
+                    <a href="{% url 'product' product.id %}"><img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image img-fluid" /></a>
+
                     <div class="product-content">
                       <h5 class="element-title text-uppercase fs-6 mt-3"><a href="#">{{ product.name }}</a></h5>
                       <a href="#" class="text-decoration-none" data-after="Add to cart"><span>Rs. {{ product.price }}</span></a>

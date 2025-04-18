@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from .models import Product, Category
+from django.shortcuts import get_object_or_404
 
 
-def product_view(request):
-    return render(request, 'products/product.html')
+def product_view(request, id):
+    product = get_object_or_404(Product, id=id)
+    return render(request, 'products/product.html', {'product': product})
 
 
 def allproducts_view(request):
