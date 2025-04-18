@@ -197,13 +197,13 @@
                 <a href="index.html" class="text-uppercase mx-3">Login</a>
               </li>
               <li class="d-none d-lg-block">
-                <a href="index.html" class="text-uppercase mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">Cart <span class="cart-count">(0)</span></a>
+                <a href="{% url 'cart' %}" class="text-uppercase mx-3" aria-controls="offcanvasCart">Cart <span class="cart-count">({{ request.session.cart|length }})</span></a>
               </li>
 
               <li class="d-lg-none">
                 <a href="#" class="mx-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
                   <svg width="24" height="24" viewBox="0 0 24 24">
-                    <use xlink:href="#cart"></use>
+                    <use xlink:href="{% url 'cart' %}"></use>
                   </svg>
                 </a>
               </li>
@@ -346,11 +346,11 @@
         <div class="container">
           <div class="row">
             <div class="col-md-6 d-flex flex-wrap">
-              <!--        <div class="shipping">
+              <!--          <div class="shipping">
               <span>We ship with:</span>
               <img src="images/arct-icon.png" alt="icon" />
               <img src="images/dhl-logo.png" alt="icon" />
-            </div>        -->
+            </div>          -->
               <div class="payment-option">
                 <!-- <span>Payment Option:</span> -->
                 <img src="{% static 'images/visa-card.png' %}" alt="card" />
