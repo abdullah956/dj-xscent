@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'products',
     'carts',
     'checkouts',
+    'admins',
 ]
 
 MIDDLEWARE = [
@@ -130,4 +131,4 @@ EMAIL_HOST = 'smtp.gmail.com'  # Use your email provider's SMTP host
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'abdullaharshed956@gmail.com'  # Your email address
-EMAIL_HOST_PASSWORD = 'bjcz fzhv ltoe desm'  # Your email password
+EMAIL_HOST_PASSWORD = 'ohiv supo jkrr rztm'  # Your email password
