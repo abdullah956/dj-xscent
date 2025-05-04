@@ -186,9 +186,11 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url 'orders_list' %}">Orders</a>
-                  </li>
+                  {% if user.is_authenticated %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'orders_list' %}">Orders</a>
+                    </li>
+                  {% endif %}
                 </ul>
               </div>
             </div>
@@ -291,7 +293,7 @@
                   <a href="{% url 'home' %}" class="item-anchor">Home</a>
                 </li>
                 <li class="menu-item">
-                  <a href="{% url 'contact'%}" class="item-anchor">Contact</a>
+                  <a href="{% url 'contact' %}" class="item-anchor">Contact</a>
                 </li>
               </ul>
             </div>
@@ -340,11 +342,11 @@
         <div class="container">
           <div class="row">
             <div class="col-md-6 d-flex flex-wrap">
-              <!--          <div class="shipping">
+              <!--           <div class="shipping">
               <span>We ship with:</span>
               <img src="images/arct-icon.png" alt="icon" />
               <img src="images/dhl-logo.png" alt="icon" />
-            </div>          -->
+            </div>           -->
               <div class="payment-option">
                 <!-- <span>Payment Option:</span> -->
                 <img src="{% static 'images/visa-card.png' %}" alt="card" />

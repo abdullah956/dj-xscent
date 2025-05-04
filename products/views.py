@@ -1,12 +1,34 @@
-from django.shortcuts import render
-from .models import Product, Category
-from django.shortcuts import get_object_or_404
-
+from .models import Product, Category , Review
+from django.shortcuts import render, get_object_or_404, redirect
+from django.db.models import Avg
 
 def product_view(request, id):
     product = get_object_or_404(Product, id=id)
-    return render(request, 'products/product.html', {'product': product})
+    reviews = Review.objects.filter(product=product)
+    avg_rating = reviews.aggregate(Avg('rating'))['rating__avg'] or 0
+    avg_rating = round(avg_rating)
 
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        rating = int(request.POST.get('rating'))
+        review_message = request.POST.get('review')
+
+        Review.objects.create(
+            product=product,
+            name=name,
+            email=email,
+            rating=rating,
+            review=review_message
+        )
+        return redirect('product', id=product.id)
+
+    return render(request, 'products/product.html', {
+        'product': product,
+        'reviews': reviews,
+        'avg_rating': avg_rating,
+        'stars': range(1, 6),
+    })
 
 def allproducts_view(request):
     category_id = request.GET.get('category')
