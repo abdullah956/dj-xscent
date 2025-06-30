@@ -32,8 +32,8 @@ def contact_view(request):
         contact_message = ContactMessage(name=name, email=email, message=message)
         contact_message.save()
         messages.success(request, 'Your message has been sent successfully!')
-        return redirect('contact')
-    return render(request, 'home.html')
+        return redirect('home')
+    return render(request, 'users/contact.html')
 
 def newsletter_signup(request):
     if request.method == 'POST':

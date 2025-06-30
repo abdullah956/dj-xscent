@@ -1,82 +1,90 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>All Orders</title>
-    <style>
-        .details { display: none; }
-    </style>
-    <script>
-        function toggleDetails(id) {
-            const el = document.getElementById('details-' + id);
-            el.style.display = el.style.display === 'none' ? 'table-row' : 'none';
-        }
-    </script>
-</head>
-<body>
-    <h1>All Orders</h1>
-<form method="get" id="order-form">
-    <label>Date: <input type="date" name="order_date" value="{{ request.GET.order_date }}"></label>
-    <button type="submit" name="action" value="filter">Filter</button>
-    <button type="submit" name="action" value="download">Download Excel</button>
-</form>
-<br>
+{% extends 'base.html' %}
 
+{% block content %}
+<div class="container my-5">
+    <h1 class="mb-4 text-center">All Orders</h1>
 
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>City</th>
-                <th>Total</th>
-                <th>Paid</th>
-                <th>Status</th>
-                <th>Payment</th>
-                <th>Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for order in orders %}
-            <tr>
-                <form method="post" action="{% url 'update_order_status' order.id %}">
-                    {% csrf_token %}
-                    <td>{{ order.id }}</td>
-                    <td>{{ order.first_name }} {{ order.last_name }}</td>
-                    <td>{{ order.email }}</td>
-                    <td>{{ order.phone_number }}</td>
-                    <td>{{ order.city }}</td>
-                    <td>{{ order.total_amount }}</td>
-                    <td>{{ order.paid }}</td>
-                    <td>
-                        <select name="status" onchange="this.form.submit()">
-                            {% for value, label in status_choices %}
-                                <option value="{{ value }}" {% if value == order.status %}selected{% endif %}>{{ label }}</option>
+    <!-- Filter Form -->
+    <form method="get" id="order-form" class="row g-3 align-items-end">
+        <div class="col-md-4">
+            <label for="order_date" class="form-label">Filter by Date</label>
+            <input type="date" name="order_date" class="form-control" id="order_date" value="{{ request.GET.order_date }}">
+        </div>
+        <div class="col-md-auto">
+            <button type="submit" name="action" value="filter" class="btn btn-primary">Filter</button>
+        </div>
+        <div class="col-md-auto">
+            <button type="submit" name="action" value="download" class="btn btn-success">Download Excel</button>
+        </div>
+    </form>
+
+    <!-- Orders Table -->
+    <div class="table-responsive mt-5">
+        <table class="table table-bordered align-middle text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>City</th>
+                    <th>Total</th>
+                    <th>Paid</th>
+                    <th>Status</th>
+                    <th>Payment</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <form method="post" action="{% url 'update_order_status' order.id %}">
+                        {% csrf_token %}
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.first_name }} {{ order.last_name }}</td>
+                        <td>{{ order.email }}</td>
+                        <td>{{ order.phone_number }}</td>
+                        <td>{{ order.city }}</td>
+                        <td>{{ order.total_amount }}</td>
+                        <td>{{ order.paid }}</td>
+                        <td>
+                            <select name="status" class="form-select form-select-sm" onchange="this.form.submit()">
+                                {% for value, label in status_choices %}
+                                    <option value="{{ value }}" {% if value == order.status %}selected{% endif %}>{{ label }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td>{{ order.payment_method }}</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-info" onclick="toggleDetails({{ order.id }})">View</button>
+                        </td>
+                    </form>
+                </tr>
+                <tr id="details-{{ order.id }}" class="details" style="display: none;">
+                    <td colspan="10" class="bg-light text-start">
+                        <strong>Street:</strong> {{ order.street_address }}<br>
+                        <strong>Postal Code:</strong> {{ order.postal_code }}<br><br>
+                        <strong>Items:</strong>
+                        <ul class="list-unstyled">
+                            {% for item in order.cart_data.values %}
+                            <li class="mb-2 d-flex align-items-center">
+                                <img src="{{ item.image }}" alt="img" height="50" class="me-3" />
+                                <span>{{ item.name }} — {{ item.quantity }} × {{ item.price }} = {{ item.item_total }}</span>
+                            </li>
                             {% endfor %}
-                        </select>
+                        </ul>
                     </td>
-                    <td>{{ order.payment_method }}</td>
-                    <td><button type="button" onclick="toggleDetails({{ order.id }})">View</button></td>
-                </form>
-            </tr>
-            <tr id="details-{{ order.id }}" class="details">
-                <td colspan="10">
-                    <strong>Street:</strong> {{ order.street_address }}<br>
-                    <strong>Postal Code:</strong> {{ order.postal_code }}<br><br>
-                    <strong>Items:</strong>
-                    <ul>
-                        {% for item in order.cart_data.values %}
-                        <li>
-                            <img src="{{ item.image }}" alt="img" height="50" />
-                            {{ item.name }} — {{ item.quantity }} × {{ item.price }} = {{ item.item_total }}
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</body>
-</html>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function toggleDetails(id) {
+        const el = document.getElementById('details-' + id);
+        el.style.display = el.style.display === 'none' ? 'table-row' : 'none';
+    }
+</script>
+{% endblock %}

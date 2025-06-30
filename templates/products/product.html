@@ -12,8 +12,8 @@
       overflow: hidden;
       border-radius: 0.5rem;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-      height: 460px;
-      width: 400px;
+      height: 480px;
+      width: 450px;
       margin: 0 auto;
     }
     .product-img-wrapper img {
@@ -48,8 +48,8 @@
     }
   </style>
 
-  <div class="container my-5">
-    <div class="row g-5">
+  <div class="container-fluid my-5 py-3">
+    <div class="row g-2">
       <div class="col-md-6 text-center">
         <div class="product-img-wrapper">
           <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid" />
@@ -57,9 +57,9 @@
       </div>
 
       <div class="col-md-6">
-        <h2 class="fw-bold mb-3">{{ product.name }}</h2>
+        <h4 class="fw-bold mb-3">{{ product.name }}</h4>
         <p class="text-muted mb-4">{{ product.description }}</p>
-        <h2 class="fw-bold mb-3">Price: Rs. {{ product.price }}</h2>
+        <h6 class="fw-bold mb-3">Price: Rs. {{ product.price }}</h6>
 
         <div class="mb-4">
           <span class="text-dark fs-5">
